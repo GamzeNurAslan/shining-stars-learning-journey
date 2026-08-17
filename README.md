@@ -31,14 +31,15 @@ Kısacası:
 | ⭐ | Challenge | Status |
 |---|---|---|
 | 01 | [📊 Power BI — Retail Analytics](./Week-01-Power-BI/) | ✅ |
-| 02 | 🔒 Loading... | ⏳ |
+| 02 | [🧩 Data Modeling & Data Engineering](./Week-02-Data-Engineering/) | ✅ |
 | 03 | 👀 Stay tuned | ⏳ |
 
 ---
 
 ## 🧰 My Toolbox
 
-`Power BI` • `Excel` • `Power Query` • `DAX` • `GitHub`
+`Power BI` • `Excel` • `Power Query` • `DAX` • `GitHub`  
+`Data Modeling` • `Star Schema` • `ETL` • `ELT` • `Microsoft Fabric`
 
 ...and more coming soon. 👀
 
