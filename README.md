@@ -83,6 +83,15 @@ oluşturulmuştur.
 
 ---
 
+## 💜 Built by
+
+👩‍💻 **Gamze Nur Aslan**
+
+Yes, hi. That's me. 😄  
+Learning, building, debugging and occasionally questioning my life choices in Power BI. ✨
+
+---
+
 <p align="center">
   ⭐ <b>Keep learning • Keep building • Keep shining</b> ⭐
 </p>
