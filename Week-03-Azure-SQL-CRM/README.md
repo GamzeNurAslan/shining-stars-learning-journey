@@ -1,4 +1,4 @@
-# ☁️ Week 03 | Azure SQL & CRM Analytics
+# Week 03 | Azure SQL & CRM Analytics
 
 > Azure SQL üzerinde CRM verisi oluşturmak, veriyi modellemek ve Power BI ile anlamlı KPI'lara dönüştürmek.
 
