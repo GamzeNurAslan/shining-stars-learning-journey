@@ -33,7 +33,7 @@ Kısacası:
 | 01 | [📊 Power BI — Retail Analytics](./Week-01-Power-BI/) | ✅ |
 | 02 | [🧩 Data Modeling & Data Engineering](./Week-02-Data-Engineering/) | ✅ |
 | 03 | [☁️ Azure SQL & CRM Analytics](./Week-03-Azure-SQL-CRM/) | ✅ |
-| 04 | [🔎 BigQuery & Data Warehouse](./Week-04-BigQuery-DWH/) | ✅ |
+| 04 | [🔎 BigQuery & Data Warehouse](./Week 4 BigQuery-DWH/) | ✅ |
 
 ---
 
