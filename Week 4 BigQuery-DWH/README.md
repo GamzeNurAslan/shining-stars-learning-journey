@@ -1,10 +1,10 @@
-# ☁️ Week 4 — BigQuery & Data Warehouse DWH
+# ☁️ Week 4 — BigQuery & Data Warehouse
 
 > ⭐ **Shining Stars | Learning Journey**
 
-This week, I focused on **Google BigQuery and Data Warehouse concepts** through hands-on experiments and a small data project.
+Bu hafta odağım **Google BigQuery ve Data Warehouse** kavramlarını sadece teoride öğrenmek değil, gerçek veriler üzerinde deneyerek anlamaktı.
 
-Instead of learning only from theory, I worked with real datasets, tested query optimization, explored analytical data modeling, and transformed my findings into a visible project.
+Çalışmayı şu akışta ilerlettim:
 
 ### 🔎 Research → ☁️ BigQuery → 🧱 Data Modeling → 📊 Analysis → 🚀 Project
 
@@ -12,23 +12,21 @@ Instead of learning only from theory, I worked with real datasets, tested query 
 
 ## ☁️ BigQuery Experiment
 
-I used **Google Cloud BigQuery Sandbox** with the NYC Citi Bike public dataset to understand how query design affects the amount of data processed.
+Google Cloud **BigQuery Sandbox** üzerinde NYC Citi Bike public dataset'ini kullanarak küçük bir query optimization deneyi yaptım.
 
-My first query processed approximately:
+İlk sorguda işlenen veri:
 
 ```text
 1.15 GB
 ```
 
-After selecting only the necessary columns:
+Sadece gerçekten ihtiyacım olan sütunları seçtiğimde:
 
 ```text
 667.06 MB
 ```
 
-Then, instead of repeatedly querying the raw data, I created a pre-aggregated analytical table.
-
-The processed data dropped to:
+Daha sonra raw data'yı her seferinde yeniden sorgulamak yerine pre-aggregated bir analytics table oluşturdum:
 
 ```text
 20.03 KB
@@ -44,67 +42,39 @@ The processed data dropped to:
 20.03 KB
 ```
 
-This experiment showed me that query optimization is not only about writing shorter SQL.
+Bu deney bana optimization'ın yalnızca daha kısa SQL yazmak olmadığını gösterdi.
 
-> 💡 **How data is modeled and prepared can make a much bigger difference.**
+> 💡 **Data modeling ve verinin nasıl hazırlandığı, query performance üzerinde çok büyük bir etkiye sahip.**
 
----
-
-## 🧪 Does LIMIT Reduce Data Scanned?
-
-I also tested whether adding:
-
-```sql
-LIMIT 100
-```
-
-would reduce the amount of processed data.
-
-The result remained:
-
-```text
-667.06 MB
-```
-
-even after removing `LIMIT`.
-
-This helped me understand that:
-
-> **LIMIT reduces the number of rows returned, but it does not necessarily reduce the amount of data scanned.**
+Ayrıca `LIMIT 100` kullanmanın scanned data miktarını tek başına azaltmadığını da test ederek gördüm.
 
 ---
 
 ## 🧱 Data Warehouse Perspective
 
-The biggest difference appeared when I stopped querying raw data repeatedly and created an analytical summary table.
+Bu çalışma sayesinde şu kavramları uygulamalı olarak daha iyi anlamaya başladım:
 
-This made concepts such as:
+`Data Modeling` • `Aggregate Tables` • `Analytical Layers` • `Query Optimization`
 
-- 🧱 Data Modeling
-- ⭐ Star Schema
-- 📦 Aggregate Tables
-- 📊 Analytical Layers
-- ⚡ Query Optimization
+Kendime sorduğum soru da değişti:
 
-much more meaningful.
+> ❌ “Bu query'yi nasıl daha kısa yazarım?”
 
-Instead of only asking:
+yerine:
 
-> “How can I make this query faster?”
+> ✅ **“Aynı analizi her seferinde raw data üzerinden hesaplamak zorunda mıyım?”**
 
-I started asking:
-
-> **“Do I really need to calculate the same analytical result from raw data every time?”**
+Bu bakış açısı benim için Data Warehouse mantığını çok daha anlaşılır hale getirdi.
 
 ---
 
 ## 📊 Job Market Analysis
 
-I also analyzed **20 data-focused job postings from Türkiye and the global market**.
+Trend araştırması kapsamında Türkiye ve global pazardan seçtiğim **20 data-focused job posting** üzerinde küçük bir analiz yaptım.
 
-I converted technical requirements into a small dataset and analyzed them using BigQuery and SQL.
+İlanlarda geçen teknik yetkinlikleri dataset'e dönüştürüp BigQuery ve SQL ile analiz ettim.
 
-Some of the strongest signals were:
+Öne çıkan bazı skill'ler:
 
 | Skill | Frequency |
 |---|---:|
@@ -116,9 +86,9 @@ Some of the strongest signals were:
 | 🧱 Data Modeling | 60% |
 | 🔍 BigQuery | 55% |
 
-One of my main observations was that technologies usually do not appear alone.
+Buradaki en önemli çıkarımlarımdan biri:
 
-They form a stack:
+> **Technologies don't work alone — they form a stack.**
 
 ```text
 SQL
@@ -132,23 +102,19 @@ Airflow
 Data Quality & Governance
 ```
 
-This changed my learning perspective from:
+Yani artık sadece **“Hangi teknolojiyi öğrenmeliyim?”** diye değil,
 
-**“Which technology should I learn?”**
+**“Bu teknolojiler gerçek bir data pipeline içerisinde nasıl birlikte çalışıyor?”**
 
-to:
-
-**“How do these technologies work together in a real data system?”**
+diye düşünmeye başladım.
 
 ---
 
-## 🕸️ Exploring Ontology & Knowledge Graphs
+## 🕸️ Ontology & Knowledge Graph
 
-As part of my trend research, I also explored:
+Bu haftaki araştırmanın farklı bir bölümünde **Ontology, Knowledge Graph ve Semantic Layer** kavramlarını da inceledim.
 
-`Ontology` • `Knowledge Graphs` • `Semantic Layer` • `SPARQL`
-
-I created a small Telecom-focused model:
+Telecom domain'i için küçük bir model oluşturdum:
 
 ```text
 Customer → Order → Product
@@ -156,9 +122,9 @@ Customer → Ticket → Issue Type
 Customer → Churn Risk
 ```
 
-Then I queried these relationships using **SPARQL**.
+Ardından ilişkileri **SPARQL** ile sorguladım.
 
-Example:
+Örnek:
 
 ```text
 High Churn Risk
@@ -170,24 +136,25 @@ Connection Problem
 Customer101 → RouterX → Ticket77
 ```
 
-This introduced me to the idea that giving an AI system access to data may not always be enough.
+Bu çalışma bana şu fikri düşündürdü:
 
-It may also need to understand **what the data means and how different entities are related**. 🤖
+> 🤖 **Giving an AI access to data is not always enough.  
+> It may also need to understand what that data means.**
 
 ---
 
-## 🤗 Turning the Research into a Project
+## 🤗 From Research to Project
 
-I did not want this week's work to remain only as a report.
+Çalışmanın sadece bir rapor olarak kalmasını istemedim.
 
-So I transformed the research into visible outputs:
+Bu nedenle araştırmayı farklı çıktılara dönüştürdüm:
 
-- 📊 **Hugging Face Dataset** — job market data
-- 🚀 **Hugging Face Space** — interactive Türkiye vs Global analysis
-- 🕸️ **Semantic Data Demo** — Ontology & Knowledge Graph experiment
-- 💻 **GitHub** — technical implementation
+- 📊 **Hugging Face Dataset** — Job Market data
+- 🚀 **Hugging Face Space** — Türkiye vs Global interactive analysis
+- 🕸️ **Semantic Data Demo** — Ontology & Knowledge Graph
+- 💻 **GitHub** — Technical side of the project
 
-The final workflow became:
+Final workflow:
 
 ```text
 🔎 Research
@@ -223,31 +190,31 @@ Knowledge Graph
 AI Agents
 ```
 
-My new learning approach is:
+Bu haftadan sonra kendi learning approach'umu da şöyle tanımlıyorum:
 
 ### 🔎 Research → 🛠️ Build → 💥 Break → 📏 Measure → 🧠 Explain
 
 ---
 
-## 🛠️ Technologies & Concepts
+## 🛠️ Tech Stack & Concepts
 
 `SQL` • `Python` • `BigQuery` • `Data Warehouse`  
 `Data Modeling` • `Data Quality` • `Governance`  
 `Airflow` • `dbt / Dataform`  
 `Ontology` • `Knowledge Graph` • `SPARQL`  
-`Hugging Face` • `Google Cloud`
+`Google Cloud` • `Hugging Face`
 
 ---
 
 ## ⭐ Final Takeaway
 
-This week helped me understand that working with data is not only about writing queries.
+Bu hafta benim için sadece BigQuery üzerinde query çalıştırmak değildi.
 
-It is also about:
+Raw data'nın nasıl işlendiğini, data modeling'in neden önemli olduğunu ve iyi tasarlanmış bir analytical layer'ın performansı nasıl değiştirebildiğini uygulamalı olarak gördüm.
 
-**how the data is modeled, how efficiently it is processed, how reliable it is, and how it can be transformed into something useful.**
+Aynı zamanda trendleri yalnızca takip etmek yerine onları **data ile ölçmeye ve küçük projelerle test etmeye** çalıştım.
 
-> ☁️ **From raw data to meaningful insights.**
+> ⭐ **Don't just follow trends. Understand the data behind them.**
 
 ---
 
@@ -257,6 +224,6 @@ It is also about:
 
 ## ☁️ BigQuery & Data Warehouse
 
-**COMPLETED ✨**
+**Learning by Building 🚀**
 
 </div>
