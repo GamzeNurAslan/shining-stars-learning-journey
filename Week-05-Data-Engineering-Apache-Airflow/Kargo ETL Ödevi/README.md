@@ -2,7 +2,7 @@
 
 Bu hafta odağım **Veri Mühendisliği**, **ETL pipeline mantığı**, **veri kalitesi**, **idempotency** ve **Apache Airflow’un veri süreçlerindeki rolü** oldu.
 
-Amaç yalnızca bir CSV dosyasını temizlemek değil; veriyi üretmekten başlayıp PostgreSQL’e yüklemeye kadar uzanan, tekrar çalıştırıldığında bozulmayan ve hatalı kayıtları kontrol altında tutan küçük bir **data pipeline** oluşturmaktı. 🚀
+Amaç yalnızca bir CSV dosyasını temizlemek değil; veriyi üretmekten başlayıp PostgreSQL’e yüklemeye kadar uzanan, tekrar çalıştırıldığında bozulmayan ve hatalı kayıtları kontrol altında tutan küçük bir **data pipeline** oluşturmaktı. 
 
 ---
 
@@ -267,4 +267,4 @@ kargo-etl-odevi/
 
 Bu haftanın sonunda veri mühendisliğinin yalnızca veriyi temizlemekten ibaret olmadığını daha net gördüm.
 
-Bir pipeline’ın yalnızca **çalışması** değil; aynı zamanda **tekrar çalıştırılabilir, güvenilir, izlenebilir ve veri kalitesini kontrol edebilir** olması gerektiğini uygulamalı olarak deneyimledim. 🚀
+Bir pipeline’ın yalnızca **çalışması** değil; aynı zamanda **tekrar çalıştırılabilir, güvenilir, izlenebilir ve veri kalitesini kontrol edebilir** olması gerektiğini uygulamalı olarak deneyimledim. 
