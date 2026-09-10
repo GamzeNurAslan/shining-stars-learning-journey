@@ -1,4 +1,4 @@
-# ☁️ Week 4 — BigQuery & Data Warehouse
+# ☁️ Week 4 — BigQuery & Data Warehouse DWH
 
 > ⭐ **Shining Stars | Learning Journey**
 
