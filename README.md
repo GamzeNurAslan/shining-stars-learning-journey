@@ -33,15 +33,17 @@ Kısacası:
 | 01 | [📊 Power BI — Retail Analytics](./Week-01-Power-BI/) | ✅ |
 | 02 | [🧩 Data Modeling & Data Engineering](./Week-02-Data-Engineering/) | ✅ |
 | 03 | [☁️ Azure SQL & CRM Analytics](./Week-03-Azure-SQL-CRM/) | ✅ |
+| 04 | [🔎 BigQuery & Data Warehouse](./Week-04-BigQuery-DWH/) | ✅ |
 
 ---
 
 ## 🧰 My Toolbox
 
 `Power BI` • `Excel` • `Power Query` • `DAX`  
-`Azure SQL` • `SQL` • `Microsoft Azure`  
-`Data Modeling` • `Star Schema` • `ETL` • `ELT`  
-`CRM Analytics` • `Microsoft Fabric` • `GitHub`
+`SQL` • `Azure SQL` • `Microsoft Azure` • `BigQuery` • `Google Cloud`  
+`Data Modeling` • `Data Warehouse` • `Star Schema` • `ETL` • `ELT`  
+`CRM Analytics` • `Microsoft Fabric` • `GitHub`  
+`Hugging Face` • `Knowledge Graph` • `SPARQL`
 
 ...and more coming soon. 👀
 
@@ -61,6 +63,15 @@ veri yönetimi süreçlerinin incelenmesi.
 Azure SQL üzerinde CRM veri modeli oluşturma, örnek CRM verilerini  
 veritabanına aktarma ve Power BI ile bağlantı kurarak CRM KPI'larını  
 analiz eden interaktif bir dashboard geliştirme.
+
+### 🔎 Week 04 — BigQuery & Data Warehouse
+BigQuery üzerinde gerçek verilerle query optimization denemeleri,  
+Data Warehouse yaklaşımının uygulanması ve iş ilanlarının veri setine  
+dönüştürülerek teknik trendlerin analiz edilmesi.
+
+Ek olarak **Ontology & Knowledge Graph** kavramlarını araştırıp küçük bir  
+semantic data deneyi gerçekleştirdim ve çalışmayı Hugging Face üzerinde  
+interaktif bir çıktıya dönüştürdüm. 🚀
 
 ---
 
@@ -88,7 +99,7 @@ oluşturulmuştur.
 👩‍💻 **Gamze Nur Aslan**
 
 Yes, hi. That's me. 😄  
-Learning, building, debugging and occasionally questioning my life choices in Power BI. ✨
+Learning, building, debugging and occasionally wondering why one query scans gigabytes of data. ☁️✨
 
 ---
 
