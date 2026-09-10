@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: kargo_postgres
+
+    environment:
+      POSTGRES_USER: kargo_user
+      POSTGRES_PASSWORD: kargo123
+      POSTGRES_DB: kargo_db
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
