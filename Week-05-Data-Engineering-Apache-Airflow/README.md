@@ -5,7 +5,7 @@ Bu hafta **Veri Mühendisliği**, **ETL pipeline mantığı**, **Docker & Postgr
 Haftanın uygulamasında ise sentetik kargo verisi üretiminden başlayıp temiz verinin PostgreSQL’e güvenli şekilde aktarılmasına kadar uzanan küçük bir **uçtan uca veri pipeline’ı** oluşturdum. 
 
 <p align="center">
-  <img src="assets/kargo-etl-demo-hq.gif" width="900" />
+  <img src="[assets/kargo-etl-demo-hq.gif](https://github.com/GamzeNurAslan/shining-stars-learning-journey/blob/main/Week-05-Data-Engineering-Apache-Airflow/kargo_etl_hq.gif)" width="900" />
 </p>
 
 ---
