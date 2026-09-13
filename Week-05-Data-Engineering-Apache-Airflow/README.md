@@ -2,7 +2,11 @@
 
 Bu hafta **Veri Mühendisliği**, **ETL pipeline mantığı**, **Docker & PostgreSQL**, **idempotency**, **veri kalitesi** ve **Apache Airflow’un veri süreçlerindeki rolü** üzerine çalıştım.
 
-Haftanın uygulamasında ise sentetik kargo verisi üretiminden başlayıp temiz verinin PostgreSQL’e güvenli şekilde aktarılmasına kadar uzanan küçük bir **uçtan uca veri pipeline’ı** oluşturdum. 🚀
+Haftanın uygulamasında ise sentetik kargo verisi üretiminden başlayıp temiz verinin PostgreSQL’e güvenli şekilde aktarılmasına kadar uzanan küçük bir **uçtan uca veri pipeline’ı** oluşturdum. 
+
+<p align="center">
+  <img src="assets/kargo-etl-demo-hq.gif" width="900" />
+</p>
 
 ---
 
