@@ -93,28 +93,210 @@ function render(data) {
   renderHistory(data.sessions || []);
 }
 
-async function state() {
+const STORAGE_KEY = 'odak-kocu-public-v1';
+const EMPTY_STATE = { timer: null, tasks: [], routine: [], sessions: [], notes: [], reminders: [], lists: {} };
+let memoryState = null;
+
+function cloneEmptyState() {
+  return JSON.parse(JSON.stringify(EMPTY_STATE));
+}
+
+function loadState() {
+  if (memoryState) return memoryState;
   try {
-    const response = await fetch(`/api/state?ts=${Date.now()}`);
-    render(await response.json());
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    memoryState = { ...cloneEmptyState(), ...(saved || {}) };
   } catch (error) {
-    addBubble('Sunucuya bağlanamadım. PowerShell penceresinde web sunucusunun açık olduğundan emin ol.', 'bot');
+    memoryState = cloneEmptyState();
+  }
+  return memoryState;
+}
+
+function saveState(data) {
+  memoryState = data;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (error) { /* memory fallback */ }
+}
+
+function minutesFrom(message, fallback = 25) {
+  const minuteMatch = message.match(/(\d+)\s*(?:dakika|dk)/i);
+  if (minuteMatch) return Math.max(1, Math.min(180, Number(minuteMatch[1])));
+  const hourMatch = message.match(/(\d+)\s*saat/i);
+  return hourMatch ? Math.max(1, Math.min(180, Number(hourMatch[1]) * 60)) : fallback;
+}
+
+function syncTimer(data) {
+  const timer = data.timer;
+  if (!timer) return;
+  if (timer.status === 'running') {
+    timer.remaining_seconds = Math.max(0, Math.ceil((timer.ends_at_ms - Date.now()) / 1000));
+    if (timer.remaining_seconds === 0) {
+      timer.status = 'completed';
+      if (!timer.session_recorded) {
+        data.sessions.push({ ...timer, completed_at: new Date().toISOString(), session_recorded: true });
+        timer.session_recorded = true;
+      }
+      saveState(data);
+    }
   }
 }
 
-async function command(message) {
-  addBubble(message, 'user');
-  addBubble('İşliyorum…', 'bot');
-  const pending = $('chat').lastElementChild;
-  try {
-    const response = await fetch('/api/command', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message }) });
-    const data = await response.json();
-    pending.remove();
-    addBubble(data.answer || data.error, 'bot');
-    if (data.state) render(data.state);
-  } catch (error) {
-    pending.textContent = 'Bir bağlantı sorunu oldu. Sunucuyu kontrol edelim.';
+function snapshot() {
+  const data = loadState();
+  syncTimer(data);
+  const tasks = data.tasks || [];
+  const sessions = data.sessions || [];
+  return {
+    ...data,
+    sessions: sessions.map((session, index) => ({ index, ...session })),
+    summary: {
+      open_tasks: tasks.filter(task => !task.completed).length,
+      completed_tasks: tasks.filter(task => task.completed).length,
+      focus_sessions: sessions.length,
+      focus_minutes: sessions.reduce((total, session) => total + Number(session.duration_minutes || 0), 0),
+      notes: (data.notes || []).length,
+      reminders: (data.reminders || []).filter(reminder => !reminder.completed).length,
+      routine: data.routine || []
+    }
+  };
+}
+
+function nextTaskId(data) {
+  return Math.max(0, ...(data.tasks || []).map(task => Number(task.id) || 0)) + 1;
+}
+
+function addTask(title, minutes = 25, priority = 'normal') {
+  const data = loadState();
+  data.tasks.push({ id: nextTaskId(data), title: title.trim(), minutes: Math.max(5, Math.min(480, Number(minutes) || 25)), priority: ['low', 'normal', 'high'].includes(priority) ? priority : 'normal', completed: false, created_at: new Date().toISOString() });
+  saveState(data);
+  return data.tasks[data.tasks.length - 1];
+}
+
+function planRoutine() {
+  const data = loadState();
+  const openTasks = data.tasks.filter(task => !task.completed).sort((a, b) => ({ high: 0, normal: 1, low: 2 }[a.priority] - ({ high: 0, normal: 1, low: 2 }[b.priority])));
+  let remaining = 240;
+  let cursor = 9 * 60;
+  const routine = [];
+  for (const task of openTasks) {
+    if (remaining < 25) break;
+    const block = Math.min(Number(task.minutes) || 25, remaining, 50);
+    routine.push({ time: `${String(Math.floor(cursor / 60)).padStart(2, '0')}:${String(cursor % 60).padStart(2, '0')}`, title: task.title, minutes: block, task_id: task.id });
+    cursor += block;
+    remaining -= block;
+    if (remaining >= 5) {
+      routine.push({ time: `${String(Math.floor(cursor / 60)).padStart(2, '0')}:${String(cursor % 60).padStart(2, '0')}`, title: 'Mola', minutes: 5, type: 'break' });
+      cursor += 5;
+      remaining -= 5;
+    }
   }
+  data.routine = routine;
+  saveState(data);
+  return routine;
+}
+
+function startTimer(minutes, task = 'Odaklanma') {
+  const data = loadState();
+  if (data.timer && ['running', 'paused'].includes(data.timer.status)) return 'Zaten devam eden bir odak seansı var.';
+  const now = Date.now();
+  data.timer = { status: 'running', task: task.trim() || 'Odaklanma', duration_minutes: minutes, started_at: new Date(now).toISOString(), ends_at_ms: now + minutes * 60000, remaining_seconds: minutes * 60 };
+  saveState(data);
+  return `${data.timer.task} için ${minutes} dakikalık odak seansı başladı.`;
+}
+
+function timerCommand(action) {
+  const data = loadState();
+  const timer = data.timer;
+  if (action === 'status') {
+    syncTimer(data);
+    if (!timer) return 'Şu anda çalışan bir zamanlayıcı yok.';
+    const minutes = Math.ceil((timer.remaining_seconds || 0) / 60);
+    return timer.status === 'running' ? `${timer.task} devam ediyor. Yaklaşık ${minutes} dakika kaldı.` : `Zamanlayıcı durumu: ${timerLabel(timer.status)}.`;
+  }
+  if (!timer || !['running', 'paused'].includes(timer.status)) return 'Şu anda aktif bir odak seansı yok.';
+  syncTimer(data);
+  if (action === 'pause' && timer.status === 'running') {
+    timer.status = 'paused';
+    saveState(data);
+    return `${timer.task} duraklatıldı.`;
+  }
+  if (action === 'resume' && timer.status === 'paused') {
+    timer.status = 'running';
+    timer.ends_at_ms = Date.now() + timer.remaining_seconds * 1000;
+    saveState(data);
+    return `${timer.task} devam ediyor.`;
+  }
+  if (action === 'stop') {
+    timer.status = 'stopped';
+    timer.stopped_at = new Date().toISOString();
+    if (!timer.session_recorded) data.sessions.push({ ...timer, session_recorded: true });
+    saveState(data);
+    return `${timer.task} seansı kaydedildi.`;
+  }
+  return 'Zamanlayıcı hazır.';
+}
+
+function runCommand(message) {
+  const lower = message.toLocaleLowerCase('tr-TR');
+  if (/^(merhaba|selam|hey|günaydın)/.test(lower)) return 'Merhaba! Bugün birlikte küçük ve uygulanabilir bir adım seçebiliriz. 🌿';
+  if (lower.includes('neler yapabilirsin') || lower.includes('ne yapabilirsin')) return 'Görevlerini, Pomodoro seanslarını, günlük rutinini, notlarını ve hatırlatıcılarını birlikte düzenleyebiliriz.';
+  if (lower.includes('görev ekle') || lower.includes('yapılacak ekle')) {
+    let title = message.replace(/.*?(görev ekle|yapılacak ekle)/i, '').replace(/\d+\s*(?:dakika|dk)/i, '').replace(/yüksek öncelik|düşük öncelik|öncelikli|acil/gi, '').trim().replace(/^[,.:;-]+|[,.:;-]+$/g, '');
+    const priority = /yüksek|önemli|acil/i.test(message) ? 'high' : (/düşük/i.test(message) ? 'low' : 'normal');
+    if (!title) return 'Görev adını da yazabilir misin?';
+    const task = addTask(title, minutesFrom(message), priority);
+    return `Görev eklendi: #${task.id} ${task.title}`;
+  }
+  if ((lower.includes('tamamlandı') || lower.includes('tamamla')) && /\d+/.test(lower)) {
+    const id = Number(lower.match(/\d+/)[0]);
+    const task = loadState().tasks.find(item => item.id === id);
+    if (!task) return 'Bu numarada bir görev bulamadım.';
+    task.completed = true;
+    task.completed_at = new Date().toISOString();
+    saveState(loadState());
+    return `Tamamlandı: ${task.title}`;
+  }
+  if ((lower.includes('görev') || lower.includes('sil')) && lower.includes('sil') && /\d+/.test(lower)) {
+    const id = Number(lower.match(/\d+/)[0]);
+    const data = loadState();
+    const index = data.tasks.findIndex(task => task.id === id);
+    if (index < 0) return 'Bu numarada bir görev bulamadım.';
+    const [deleted] = data.tasks.splice(index, 1);
+    data.routine = data.routine.filter(item => item.task_id !== id);
+    saveState(data);
+    return `Görev silindi: ${deleted.title}`;
+  }
+  if (lower.includes('görevler') || lower.includes('yapılacaklar')) {
+    const tasks = loadState().tasks.filter(task => !task.completed);
+    return tasks.length ? `Açık görevler:\n${tasks.map(task => `#${task.id} ${task.title} · ${task.minutes} dk`).join('\n')}` : 'Henüz açık görev yok.';
+  }
+  if (lower.includes('duraklat') || lower.includes('beklet')) return timerCommand('pause');
+  if (lower.includes('devam et') || lower.includes('sürdür')) return timerCommand('resume');
+  if (lower.includes('durdur') || lower.includes('bitir')) return timerCommand('stop');
+  if (lower.includes('durum') || lower.includes('kaç dakika') || lower.includes('zamanlayıcı')) return timerCommand('status');
+  if (lower.includes('rutin') || lower.includes('planla') || lower.includes('günümü')) {
+    const routine = planRoutine();
+    return routine.length ? `Bugünkü rutin hazırlandı:\n${routine.map(item => `- ${item.time} · ${item.title} (${item.minutes} dk)`).join('\n')}` : 'Önce planlamak istediğin açık görevleri ekleyelim.';
+  }
+  if (lower.includes('özet') || lower.includes('bugünüm nasıl') || lower.includes('ne yapmalıyım')) {
+    const summary = snapshot().summary;
+    return `Bugünün özeti: ${summary.open_tasks} açık görev, ${summary.completed_tasks} tamamlanan görev ve ${summary.focus_sessions} odak seansı.`;
+  }
+  if (lower.includes('başlat') || lower.includes('pomodoro') || lower.includes('odaklan')) {
+    const task = message.replace(/\d+\s*(?:dakika|dk)/i, '').replace(/pomodoro|başlat|odaklanma|odaklan|için|bir/gi, '').trim() || 'Odaklanma';
+    return startTimer(minutesFrom(message), task);
+  }
+  return 'Seni dinliyorum. İstersen bir görev ekleyebilir, Pomodoro başlatabilir veya bugünkü rutinini planlayabiliriz.';
+}
+
+function state() {
+  render(snapshot());
+}
+
+function command(message) {
+  addBubble(message, 'user');
+  const answer = runCommand(message);
+  addBubble(answer, 'bot');
+  state();
 }
 
 function addBubble(text, kind) {
@@ -140,11 +322,12 @@ window.addEventListener('hashchange', () => showView(window.location.hash.replac
 
 window.completeTask = id => command(`görev ${id} tamamlandı`);
 window.deleteTask = id => command(`görev ${id} sil`);
-window.deleteSession = async index => {
+window.deleteSession = index => {
   if (!window.confirm('Bu seans kaydı silinsin mi?')) return;
-  const response = await fetch(`/api/sessions/${index}`, { method: 'DELETE' });
-  const data = await response.json();
-  if (response.ok) render(data.state);
+  const data = loadState();
+  data.sessions.splice(index, 1);
+  saveState(data);
+  state();
 };
 document.querySelectorAll('[data-view-target]').forEach(button => button.onclick = () => showView(button.dataset.viewTarget));
 document.querySelectorAll('[data-prompt]').forEach(button => button.onclick = () => command(button.dataset.prompt));
@@ -171,23 +354,16 @@ function closeTaskForm(formId) {
   if (form) form.hidden = true;
 }
 
-async function saveTaskForm(formId, titleId, minutesId, priorityId) {
+function saveTaskForm(formId, titleId, minutesId, priorityId) {
   const title = $(titleId).value.trim();
   if (!title) { $(titleId).focus(); return; }
   const button = $(`${formId.replace('form', 'save')}`);
   if (button) { button.disabled = true; button.textContent = 'Kaydediliyor…'; }
-  try {
-    const response = await fetch('/api/tasks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title, minutes: Number($(minutesId).value), priority: $(priorityId).value }) });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Görev kaydedilemedi.');
-    $(formId).hidden = true;
-    $(titleId).value = '';
-    render(data.state);
-  } catch (error) {
-    window.alert(error.message);
-  } finally {
-    if (button) { button.disabled = false; button.textContent = 'Görevi kaydet'; }
-  }
+  addTask(title, Number($(minutesId).value), $(priorityId).value);
+  $(formId).hidden = true;
+  $(titleId).value = '';
+  state();
+  if (button) { button.disabled = false; button.textContent = 'Görevi kaydet'; }
 }
 
 if ($('add-task')) $('add-task').onclick = () => openTaskForm('quick-task-form', 'quick-task-title');

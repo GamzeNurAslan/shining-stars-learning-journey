@@ -385,3 +385,15 @@ Bir uygulamanın dış servise erişim olmadan da temel işlevlerini gösterebil
 Bu çalışma, doğal dil ile gerçek uygulama durumunun bir araya geldiği küçük ama tamamlanabilir bir ürün örneği oldu. Kullanıcıdan gelen bir cümle; analiz, tool seçimi, veri güncellemesi ve anlaşılır bir cevap döngüsünden geçiyor.
 
 Haftanın sonunda elimde yalnızca bir fikir değil; kurulabilen, test edilebilen, komut satırından ve tarayıcıdan kullanılabilen bir kişisel verimlilik uygulaması bulunuyor. 🚀
+
+---
+
+## 🌍 Canlı Ürün
+
+Uygulamanın herkesin doğrudan tarayıcıdan deneyebileceği public sürümü:
+
+**[OdakKoçu’yu aç](https://odak-kocu.shinezen-0352.chatgpt.site)**
+
+Public sürümde kurulum veya API anahtarı gerekmiyor. Görevler, timer ve seans geçmişi her kullanıcının kendi tarayıcısında saklanıyor; farklı kullanıcıların verileri birbirine karışmıyor.
+
+Bu mimari hızlı ve güvenli bir MVP için seçildi. Kullanıcı hesabı, cihazlar arası senkronizasyon ve ortak veri erişimi eklenmek istendiğinde sonraki aşamada kimlik doğrulama ve merkezi veri tabanı eklenebilir.
