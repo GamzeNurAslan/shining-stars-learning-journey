@@ -6,7 +6,7 @@ Bu hafta coğrafi veriler, açık kaynak CBS araçları ve konuma dayalı analiz
 
 Uygulamada Elazığ Eğitim ve Araştırma Hastanesi merkez alınarak 1 km çevresindeki optikçiler analiz edildi. Çalışmanın sonucunda hastanenin 1 km çevresinde **6 optikçi** bulundu.
 
-![QGIS analiz haritası](./Week-07-GIS-Spatial-Analysis-QGIS/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-09-27%20152012.png)
+![QGIS analiz haritası](./Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-09-27%20152012.png)
 
 ---
 
