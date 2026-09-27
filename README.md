@@ -114,12 +114,12 @@ ile proje küçük bir fikirden kullanılabilir bir ürüne dönüştü.
 ### 🗺️ Week 07 — GIS Spatial Analysis with QGIS
 
 QGIS ve OpenStreetMap kullanarak Elazığ Eğitim ve Araştırma Hastanesi çevresindeki
-optikçileri analiz ettim. Hastane merkez alınarak 1 km'lik tampon alan oluşturuldu
-ve bu alanın içindeki optikçi noktaları sayıldı.
+optikçileri analiz ettim. Hastaneyi merkez alarak 1 km'lik tampon alan oluşturdum
+ve bu alanın içindeki optikçi noktalarını saydım.
 
-Koordinat sistemi metre cinsinden analiz yapmaya uygun hâle getirildikten sonra
-tampon analizi ve poligon içindeki noktaları sayma işlemleri uygulandı. Sonuçta
-hastanenin 1 km çevresinde **6 optikçi** bulundu.
+Koordinat sistemini metre cinsinden analiz yapmaya uygun hâle getirdim. Daha sonra
+tampon analizi ve poligon içindeki noktaları sayma işlemlerini uyguladım. Sonuçta
+hastanenin 1 km çevresinde **6 optikçi** buldum.
 
 ---
 
