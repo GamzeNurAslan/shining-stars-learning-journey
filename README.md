@@ -30,12 +30,12 @@ Kısacası:
 
 | ⭐  | Challenge                                                                   | Status |
 | -- | --------------------------------------------------------------------------- | ------ |
-| 01 | [📊 Power BI — Retail Analytics](./Week-01-Power-BI/)                       | ✅      |
+| 01 | [📊 Power BI - Retail Analytics](./Week-01-Power-BI/)                       | ✅      |
 | 02 | [🧩 Data Modeling & Data Engineering](./Week-02-Data-Engineering/)          | ✅      |
 | 03 | [☁️ Azure SQL & CRM Analytics](./Week-03-Azure-SQL-CRM/)                    | ✅      |
 | 04 | [🔎 BigQuery & Data Warehouse](./Week%204%20BigQuery-DWH/)                  | ✅      |
 | 05 | [🚚 Data Engineering & Apache Airflow](./Week-05-Data-Engineering-Apache-Airflow/) | ✅      |
-| 06 | [⏱️ Personal Productivity Agent — OdakKoçu](./Week-06-Personal-Productivity-Agent/) | ✅      |
+| 06 | [⏱️ Personal Productivity Agent - OdakKoçu](./Week-06-Personal-Productivity-Agent/) | ✅      |
 
 ---
 
