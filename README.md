@@ -1,6 +1,6 @@
 # ✨ Shining Stars | Learning Journey
 
-> **Learn. Build. Explore. Repeat. 🚀**
+> **Learn. Build. Explore. Repeat. **
 
 Selam! 👋
 
