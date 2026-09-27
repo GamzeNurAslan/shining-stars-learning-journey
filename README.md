@@ -36,6 +36,7 @@ Kısacası:
 | 04 | [🔎 BigQuery & Data Warehouse](./Week%204%20BigQuery-DWH/)                  | ✅      |
 | 05 | [🚚 Data Engineering & Apache Airflow](./Week-05-Data-Engineering-Apache-Airflow/) | ✅      |
 | 06 | [⏱️ Personal Productivity Agent - OdakKoçu](./Week-06-Personal-Productivity-Agent/) | ✅      |
+| 07 | [🗺️ GIS Spatial Analysis with QGIS](./Week-07-GIS-Spatial-Analysis-QGIS/) | ✅      |
 
 ---
 
@@ -51,6 +52,7 @@ Kısacası:
 `Hugging Face` • `Knowledge Graph` • `SPARQL`
 `Flask` • `JavaScript` • `HTML` • `CSS` • `Pytest` • `Ruff`
 `AI Agent` • `Tool Calling` • `Pomodoro` • `JSON State Management`
+`QGIS` • `OpenStreetMap` • `QuickOSM` • `GeoPackage` • `Spatial Analysis`
 
 ...and more coming soon. 👀
 
@@ -108,6 +110,16 @@ bilgilerinin uygulama yeniden açıldığında korunmasını sağladım.
 
 API anahtarı olmadan denenebilen demo modu, testler ve herkese açık tarayıcı sürümü
 ile proje küçük bir fikirden kullanılabilir bir ürüne dönüştü.
+
+### 🗺️ Week 07 — GIS Spatial Analysis with QGIS
+
+QGIS ve OpenStreetMap kullanarak Elazığ Eğitim ve Araştırma Hastanesi çevresindeki
+optikçileri analiz ettim. Hastane merkez alınarak 1 km'lik tampon alan oluşturuldu
+ve bu alanın içindeki optikçi noktaları sayıldı.
+
+Koordinat sistemi metre cinsinden analiz yapmaya uygun hâle getirildikten sonra
+tampon analizi ve poligon içindeki noktaları sayma işlemleri uygulandı. Sonuçta
+hastanenin 1 km çevresinde **6 optikçi** bulundu.
 
 ---
 
