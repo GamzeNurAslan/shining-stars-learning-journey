@@ -1,24 +1,83 @@
-# OdakKoçu
+# ⏱️ Week 6 — Personal Productivity Agent
 
-Pomodoro, görev listesi, notlar, hatırlatıcılar ve günlük rutin planlamasını tek bir Türkçe AI agent içinde birleştiren kişisel organizasyon asistanı.
+Bu hafta kişisel verimlilik, tool kullanımı ve kalıcı durum yönetimi üzerine çalıştım.
 
-## Ne yapabilir?
+Haftanın uygulamasında; Pomodoro, görev listesi, notlar, hatırlatıcılar ve günlük rutin planlamasını tek bir Türkçe kişisel verimlilik uygulamasında birleştirdim. Kullanıcı ister komut satırından ister web arayüzünden gününü planlayabiliyor, görevlerini takip edebiliyor ve odak seanslarını kaydedebiliyor.
 
-- İstenilen süreyle Pomodoro başlatır.
-- Zamanlayıcının gerçek kalan süresini kontrol eder.
-- Zamanlayıcıyı durdurur ve odak seansını kaydeder.
-- Görev ekler ve açık görevleri listeler.
-- Görevleri tamamlar; artık gerekmeyen görevleri arayüzden kalıcı olarak silebilir.
-- Görev önceliklerine göre günlük rutin hazırlar.
-- Günlük tamamlanan görev ve odak seansı özetini verir.
-- Not, fikir ve toplantı kaydı tutar.
-- Hatırlatıcı oluşturur ve bekleyenleri listeler.
-- Alışveriş veya özel liste maddelerini saklar.
-- Belirsiz istekleri açıklığa kavuşturur ve bir sonraki adımı önerir.
-- Agent'ın kullandığı tool sırasını gösterir.
-- Durumu `data/odak-state.json` dosyasında saklar.
+---
 
-## Kurulum
+## 🧭 Uygulama Akışı
+
+```text
+Kullanıcı mesajı
+      ↓
+OdakKoçu
+      ↓
+Mesajı anlama ve uygun tool'u seçme
+      ↓
+┌─────────────────────────────────────────────┐
+│ Zamanlayıcı  │ Görevler  │ Notlar            │
+│ Hatırlatıcı  │ Listeler  │ Günlük özet       │
+└─────────────────────────────────────────────┘
+      ↓
+Kalıcı JSON durum dosyası + Türkçe cevap
+```
+
+---
+
+## 🎯 Uygulamanın Yapabildikleri
+
+- Belirlenen süreyle Pomodoro başlatma
+- Zamanlayıcının gerçek kalan süresini kontrol etme
+- Odak seansını duraklatma, devam ettirme ve kaydetme
+- Görev ekleme, listeleme, tamamlama ve silme
+- Görev önceliklerine göre günlük rutin oluşturma
+- Not, fikir ve toplantı kaydı tutma
+- Hatırlatıcı oluşturma ve bekleyen hatırlatıcıları listeleme
+- Alışveriş ve özel listelere madde ekleme
+- Günlük görev ve odak özeti oluşturma
+- Aynı işlevleri web dashboard üzerinden kullanma
+
+---
+
+## 🧰 Kullanılan Teknolojiler
+
+`Python` • `Flask` • `OpenAI Responses API` • `JSON State Management` • `Pytest` • `Ruff` • `HTML` • `CSS` • `JavaScript`
+
+---
+
+## 🗂️ Proje Yapısı
+
+```text
+Week-06-Personal-Productivity-Agent/
+│
+├── src/odak_kocu/
+│   ├── agent.py       # Agent akışı ve doğal dil komutları
+│   ├── cli.py         # Komut satırı arayüzü
+│   ├── state.py       # Kalıcı durum yönetimi
+│   ├── tools.py       # Görev, timer, not ve liste araçları
+│   └── web.py         # Flask web sunucusu ve API uçları
+│
+├── web/
+│   ├── index.html      # Dashboard arayüzü
+│   ├── app.js          # Arayüz etkileşimleri
+│   └── assets/         # Uygulama görselleri
+│
+├── tests/
+│   └── test_focus.py   # Timer, görev ve agent testleri
+│
+├── docs/
+│   ├── demo-script.md  # Demo akışı
+│   └── deployment.md   # Yayınlama notları
+│
+├── .env.example
+├── pyproject.toml
+└── README.md
+```
+
+---
+
+## 🚀 Kurulum
 
 ```powershell
 python -m venv .venv
@@ -27,56 +86,60 @@ pip install -e ".[dev]"
 Copy-Item .env.example .env
 ```
 
-## Demo modu
+API anahtarı olmadan demo modu kullanılabilir. Gerçek LLM modu için `.env` dosyasına kendi API anahtarını eklemek gerekir.
 
-API anahtarı olmadan çalışır:
+---
+
+## 💬 Komut Satırı Kullanımı
 
 ```powershell
 python -m odak_kocu.cli "25 dakika matematik için Pomodoro başlat"
-python -m odak_kocu.cli "zamanlayıcı durumu"
-python -m odak_kocu.cli "görev ekle sunum hazırla"
+python -m odak_kocu.cli "görev ekle sunum hazırla 45 dakika yüksek öncelik"
 python -m odak_kocu.cli "bugünkü rutinimi planla"
+python -m odak_kocu.cli "zamanlayıcı durumu"
 python -m odak_kocu.cli --chat
+```
+
+---
+
+## 🌐 Web Dashboard
+
+```powershell
 python -m odak_kocu.web
 ```
 
-Tarayıcıda `http://127.0.0.1:8000` adresini açarak görsel dashboard'u kullanabilirsiniz.
+Ardından tarayıcıdan `http://127.0.0.1:8000` adresi açılır.
 
-## Gerçek LLM modu
+Dashboard üzerinden:
 
-`.env` içine `OPENAI_API_KEY` eklenince aynı tool'lar OpenAI Responses API kullanan agent tarafından seçilir:
+- aktif zamanlayıcı görülebilir,
+- görev eklenebilir ve tamamlanabilir,
+- günlük özet incelenebilir,
+- notlar ve hatırlatıcılar takip edilebilir,
+- tamamlanan odak seansları görüntülenebilir.
 
-```text
-OPENAI_API_KEY=...
-OPENAI_MODEL=gpt-5-mini
+---
+
+## 🧪 Testler
+
+```powershell
+python -m pytest -q
+ruff check src tests
 ```
 
-## Agent mimarisi
+Test kapsamı:
 
-```text
-Kullanıcı komutu
-      |
-      v
-OdakKoçu agent
-      |
-      +--> start_timer / timer_status / stop_timer
-      +--> add_task / list_tasks / complete_task
-      +--> add_note / list_notes / add_reminder
-      +--> add_list_item / list_items / plan_day / daily_summary
-      |
-      v
-Kalıcı JSON durum dosyası + Türkçe cevap
-```
+- Timer başlatma ve kalan süre kontrolü
+- Timer duraklatma ve devam ettirme
+- Görev ve günlük rutin oluşturma
+- Not, hatırlatıcı ve liste işlemleri
+- Görev ve seans silme
+- Doğal sohbet akışının korunması
 
-## Proje yapısı
+---
 
-```text
-src/odak_kocu/   agent, tool'lar, durum ve CLI
-data/            kalıcı yerel durum dosyası
-docs/            demo ve sonraki deploy planı
-tests/           timer ve rutin davranış testleri
-```
+## ✨ Haftadan Kalan
 
-## Sunum akışı
+Bu hafta benim için en önemli kazanım, bir uygulamanın yalnızca cevap üretmesinin yeterli olmadığını görmekti. Kullanıcı isteğini anlaması, doğru aracı seçmesi, yaptığı işlemi kalıcı olarak kaydetmesi ve sonraki komutlarda bu durumu koruması gerekiyor.
 
-Detaylı 3-5 dakikalık demo için [docs/demo-script.md](docs/demo-script.md) dosyasına bakın.
+Kısacası bu hafta; fikir aşamasındaki bir verimlilik yardımcısını, çalışan bir komut satırı aracı ve web dashboard'u olan küçük bir ürüne dönüştürdüm. 🚀📚
