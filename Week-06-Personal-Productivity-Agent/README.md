@@ -396,4 +396,10 @@ Uygulamanın herkesin doğrudan tarayıcıdan deneyebileceği public sürümü:
 
 Public sürümde kurulum veya API anahtarı gerekmiyor. Görevler, timer ve seans geçmişi her kullanıcının kendi tarayıcısında saklanıyor; farklı kullanıcıların verileri birbirine karışmıyor.
 
+### 🎬 Uygulama Önizlemesi
+
+OdakKoçu’nun tarayıcıdaki temel kullanım akışından kısa bir görüntü:
+
+![OdakKoçu uygulama demosu](web/assets/odak-kocu-demo.gif)
+
 Bu mimari hızlı ve güvenli bir MVP için seçildi. Kullanıcı hesabı, cihazlar arası senkronizasyon ve ortak veri erişimi eklenmek istendiğinde sonraki aşamada kimlik doğrulama ve merkezi veri tabanı eklenebilir.
