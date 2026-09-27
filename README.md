@@ -82,7 +82,7 @@ dönüştürülerek teknik trendlerin analiz edilmesi.
 
 Ek olarak **Ontology & Knowledge Graph** kavramlarını araştırıp küçük bir
 semantic data deneyi gerçekleştirdim ve çalışmayı Hugging Face üzerinde
-interaktif bir çıktıya dönüştürdüm. 🚀
+interaktif bir çıktıya dönüştürdüm. 
 
 ### 🚚 Week 05 — Data Engineering & Apache Airflow
 
