@@ -35,6 +35,7 @@ Kısacası:
 | 03 | [☁️ Azure SQL & CRM Analytics](./Week-03-Azure-SQL-CRM/)                    | ✅      |
 | 04 | [🔎 BigQuery & Data Warehouse](./Week%204%20BigQuery-DWH/)                  | ✅      |
 | 05 | [🚚 Data Engineering & Apache Airflow](./Week-05-Data-Engineering-Apache-Airflow/) | ✅      |
+| 06 | [⏱️ Personal Productivity Agent — OdakKoçu](./Week-06-Personal-Productivity-Agent/) | ✅      |
 
 ---
 
@@ -48,6 +49,8 @@ Kısacası:
 `Docker` • `Great Expectations` • `Apache Airflow`
 `CRM Analytics` • `GitHub`
 `Hugging Face` • `Knowledge Graph` • `SPARQL`
+`Flask` • `JavaScript` • `HTML` • `CSS` • `Pytest` • `Ruff`
+`AI Agent` • `Tool Calling` • `Pomodoro` • `JSON State Management`
 
 ...and more coming soon. 👀
 
@@ -91,6 +94,22 @@ Aynı verinin tekrar yüklenmesiyle oluşan duplicate problemini test ederek
 **Primary Key + ON CONFLICT** yaklaşımıyla idempotent bir yükleme geliştirdim.
 Son aşamada **Great Expectations** ile veri kalite kontrolleri uyguladım ve
 Apache Airflow'un bu tarz pipeline'ları nasıl orkestre ettiğini inceledim. 🔁🧪
+
+### ⏱️ Week 06 — Personal Productivity Agent: OdakKoçu
+
+Türkçe doğal dil komutlarıyla görevleri, Pomodoro odak seanslarını, notları,
+hatırlatıcıları, listeleri ve günlük rutinleri yönetebilen bir kişisel verimlilik
+uygulaması geliştirdim.
+
+Projede aynı çekirdek işlevleri hem komut satırı arayüzünden hem de web dashboard
+üzerinden kullanılabilir hâle getirdim. Tool çağrılarıyla kullanıcı isteklerini
+gerçek işlemlere dönüştürdüm; JSON tabanlı kalıcı durum yönetimiyle görev ve seans
+bilgilerinin uygulama yeniden açıldığında korunmasını sağladım.
+
+API anahtarı olmadan denenebilen demo modu, testler ve herkese açık tarayıcı sürümü
+ile proje küçük bir fikirden kullanılabilir bir ürüne dönüştü.
+
+👉 [Week 06 proje detayları](./Week-06-Personal-Productivity-Agent/) • [OdakKoçu canlı uygulaması](https://odak-kocu.shinezen-0352.chatgpt.site)
 
 ---
 
