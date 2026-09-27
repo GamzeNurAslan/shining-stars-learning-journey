@@ -22,7 +22,7 @@ ve sonunda çalışan bir çıktı ortaya koymak anlamına geliyor. ✨
 
 Kısacası:
 
-**Curiosity → Learning → Building → Improving 🚀**
+**Curiosity → Learning → Building → Improving**
 
 ---
 
