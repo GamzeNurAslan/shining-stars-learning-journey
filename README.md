@@ -109,8 +109,6 @@ bilgilerinin uygulama yeniden açıldığında korunmasını sağladım.
 API anahtarı olmadan denenebilen demo modu, testler ve herkese açık tarayıcı sürümü
 ile proje küçük bir fikirden kullanılabilir bir ürüne dönüştü.
 
-👉 [Week 06 proje detayları](./Week-06-Personal-Productivity-Agent/) • [OdakKoçu canlı uygulaması](https://odak-kocu.shinezen-0352.chatgpt.site)
-
 ---
 
 ## 💫 A little reminder
