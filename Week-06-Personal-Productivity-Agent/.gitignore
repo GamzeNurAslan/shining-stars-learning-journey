@@ -1,0 +1,17 @@
+.venv/
+.agents/
+.codex/
+__pycache__/
+*.py[cod]
+.env
+.pytest_cache/
+.pytest-tmp/
+.ruff_cache/
+.mypy_cache/
+.coverage
+dist/
+build/
+*.egg-info/
+.wrangler/
+*.log
+data/odak-state.json

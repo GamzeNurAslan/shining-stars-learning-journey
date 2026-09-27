@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "odak-kocu"
+version = "0.1.0"
+description = "Pomodoro, görev ve günlük rutin yönetimi yapan Türkçe AI agent."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=1.70.0",
+  "python-dotenv>=1.0.1",
+  "tzdata>=2024.1",
+  "flask>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.6.0",
+]
+observability = [
+  "lmnr>=0.5.0",
+]
+
+[project.scripts]
+odak-kocu = "odak_kocu.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
