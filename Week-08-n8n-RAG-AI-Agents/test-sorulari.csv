@@ -1,0 +1,11 @@
+id,soru,beklenen,kaynak
+T01,"Kazdağları'nda iki yetişkin ve bir araçla çadır alanında bir gece kalmanın temel ücreti nedir?","450 TL","01-rezervasyon-ve-fiyatlar.md"
+T02,"Karavanla KR-ALP'e gelirsem elektrik ve büyük araç için hangi koşulları kontrol etmeliyim?","150 TL elektrik; 8 metre sınırı; KR-ALP için önceden teyit","01-rezervasyon-ve-fiyatlar.md; 05-rota-ve-arac-kurallari.md"
+T03,"salda cevresinde ates yakabilir miyim","Yalnızca izin verilen sabit ocaklarda; koşullara göre kapanabilir","03-tesisler-ve-olanaklar.md"
+T04,"KampRota'da kano kiralama ücreti ne kadar?","Belgelerde bilgi yok",""
+T05,"KR-KOY'da evcil hayvan getirebilir miyim ve gecelik ücreti nedir?","Evet; 100 TL/gece","01-rezervasyon-ve-fiyatlar.md; 03-tesisler-ve-olanaklar.md"
+T06,"Girişe 36 saat kala iptal edersem ön ödemenin ne kadarı iade edilir?","Yüzde 50","02-iptal-ve-iade.md"
+T07,"İki yetişkin ve bir araçla karavan alanında bir gece, elektrik ve kahvaltı dahil toplam kaç TL olur?","1.260 TL","01-rezervasyon-ve-fiyatlar.md"
+T08,"KR-EGE'ye karavanla gelebilir miyim?","Hayır; karavan park alanı yok","03-tesisler-ve-olanaklar.md; 05-rota-ve-arac-kurallari.md"
+T09,"Bu hafta sonu KR-ALP'e gitmek mantıklı mı; hem tesis kuralını hem güncel hava ve yol durumunu değerlendir.","Belge + canlı hava/yol kontrolü","01-rezervasyon-ve-fiyatlar.md; 03-tesisler-ve-olanaklar.md; web"
+T10,"Gece fırtına çıkarsa çadırımı güvenli şekilde nereye taşımalıyım?","Kesin saha talimatı vermemeli; görevli/resmî uyarı/112","04-ekipman-ve-guvenlik.md"
