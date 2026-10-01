@@ -8,6 +8,12 @@ KampRota; şehir, hava durumu, konaklama, karavan uygunluğu, evcil hayvan, büt
 
 > **Not:** KampRota belgeleri eğitim amacıyla oluşturulmuş kurgusal içeriklerdir. Gerçek rezervasyon, fiyat, yol veya güvenlik kararı için kullanılmamalıdır.
 
+## 🔗 Demo bağlantısı
+
+[KampRota Gezi Asistanı'nı dene](http://localhost:5678/webhook/8716480a-c128-4f40-8682-58b8fb1cd743/chat)
+
+> **Not:** Bu bağlantı `localhost` olduğu için yalnızca n8n'in çalıştığı bilgisayarda açılır. Herkesin deneyebilmesi için daha sonra public bir production URL'si ile değiştirilmelidir.
+
 ## Neden bu projeyi yaptık?
 
 Sadece soru-cevap yapan bir chatbot yerine, farklı veri kaynaklarını doğru bağlamda kullanabilen daha gerçekçi bir asistan tasarlamak istedik.
