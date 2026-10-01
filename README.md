@@ -37,6 +37,7 @@ Kısacası:
 | 05 | [🚚 Data Engineering & Apache Airflow](./Week-05-Data-Engineering-Apache-Airflow/) | ✅      |
 | 06 | [⏱️ Personal Productivity Agent - OdakKoçu](./Week-06-Personal-Productivity-Agent/) | ✅      |
 | 07 | [🗺️ GIS Spatial Analysis with QGIS](./Week-07-GIS-Spatial-Analysis-QGIS/) | ✅      |
+| 08 | [🤖 n8n RAG & AI Agents](./Week-08-n8n-RAG-AI-Agents/) | ✅      |
 
 ---
 
@@ -53,6 +54,7 @@ Kısacası:
 `Flask` • `JavaScript` • `HTML` • `CSS` • `Pytest` • `Ruff`
 `AI Agent` • `Tool Calling` • `Pomodoro` • `JSON State Management`
 `QGIS` • `OpenStreetMap` • `QuickOSM` • `GeoPackage` • `Spatial Analysis`
+`n8n` • `RAG` • `DeepSeek` • `Open-Meteo` • `API Integration`
 
 ...and more coming soon. 👀
 
@@ -120,6 +122,18 @@ ve bu alanın içindeki optikçi noktalarını saydım.
 Koordinat sistemini metre cinsinden analiz yapmaya uygun hâle getirdim. Daha sonra
 tampon analizi ve poligon içindeki noktaları sayma işlemlerini uyguladım. Sonuçta
 hastanenin 1 km çevresinde **6 optikçi** buldum.
+
+### 🤖 Week 08 — n8n RAG & AI Agents
+
+n8n üzerinde DeepSeek API ile çalışan bir RAG tabanlı Türkiye gezi asistanı geliştirdim.
+Asistan; KampRota belgelerindeki sabit fiyat, tesis, rezervasyon ve güvenlik bilgilerini
+keyword tabanlı retrieval ile kullanıyor. Güncel şehir hava durumu için Open-Meteo API
+ile geocoding ve forecast araçlarını workflow'a bağladım.
+
+Ayrıca Simple Memory, karşılaştırma modu, karavan/evcil hayvan/bütçe odaklı gezi
+planlama ve HTML/PDF rapor çıktısı ekledim. E-posta gönderimi için Gmail SMTP
+entegrasyonunu denedim; güvenlik nedeniyle normal şifre yerine App Password gerektiği
+için bu adımı opsiyonel bıraktım.
 
 ---
 
