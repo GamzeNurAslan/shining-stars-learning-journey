@@ -144,7 +144,7 @@ Week-08-n8n-RAG-AI-Agents/
 
 OpenAI embedding kredisi gerektirmeyen keyword RAG sürümünü, sınırlı internet ve düşük maliyetli denemeler için özellikle tercih ettim. Klasik vector RAG sürümünü de karşılaştırma amacıyla workflow klasöründe tuttum.
 
-## Öğrendiklerimiz
+## Öğrendiklerim
 
 Bu çalışma bana iyi bir AI Agent'ın yalnızca güçlü bir model seçmekten ibaret olmadığını gösterdi. Asıl değer; doğru kaynağı doğru soruyla eşleştirmek, canlı veriyi sabit işletme bilgisinden ayırmak, hataları kullanıcıya anlaşılır biçimde aktarmak ve çıktıyı gerçek hayatta kullanılabilir bir rapora dönüştürmekte ortaya çıktı.
 
