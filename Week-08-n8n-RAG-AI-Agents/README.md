@@ -2,23 +2,29 @@
 
 ## KampRota Türkiye Gezi Asistanı
 
-Bu haftanın çalışmasında n8n üzerinde, Türkçe soruları anlayan ve seyahat planı oluşturan bir RAG tabanlı AI Agent geliştirdik.
+Bu haftanın çalışmasında n8n üzerinde, Türkçe soruları anlayan ve seyahat planı oluşturan bir RAG tabanlı AI Agent geliştirdim.
 
 KampRota; şehir, hava durumu, konaklama, karavan uygunluğu, evcil hayvan, bütçe ve gezi planı gibi bilgileri tek bir sohbet akışında birleştiren eğitim amaçlı bir asistan prototipidir.
 
 > **Not:** KampRota belgeleri eğitim amacıyla oluşturulmuş kurgusal içeriklerdir. Gerçek rezervasyon, fiyat, yol veya güvenlik kararı için kullanılmamalıdır.
 
-## Neden bu projeyi yaptık?
+## 🔗 Demo bağlantısı
 
-Sadece soru-cevap yapan bir chatbot yerine, farklı veri kaynaklarını doğru bağlamda kullanabilen daha gerçekçi bir asistan tasarlamak istedik.
+[KampRota Gezi Asistanı'nı dene](http://localhost:5678/webhook/8716480a-c128-4f40-8682-58b8fb1cd743/chat)
+
+> **Not:** Bu bağlantı `localhost` olduğu için yalnızca n8n'in çalıştığı bilgisayarda açılır. Herkesin deneyebilmesi için daha sonra public bir production URL'si ile değiştirilmelidir.
+
+## Neden bu projeyi yaptım?
+
+Sadece soru-cevap yapan bir chatbot yerine, farklı veri kaynaklarını doğru bağlamda kullanabilen daha gerçekçi bir asistan tasarlamak istedim.
 
 Projenin temel fikri şuydu:
 
 > Kullanıcı seyahatini anlatsın; asistan sabit işletme kurallarını belgelerden, güncel bilgileri canlı API'lerden alsın ve sonucu anlaşılır bir gezi raporuna dönüştürsün.
 
-Bu yaklaşım sayesinde modelin her şeyi ezbere cevaplaması yerine, hangi bilginin hangi kaynaktan geldiğini ayırmayı hedefledik.
+Bu yaklaşım sayesinde modelin her şeyi ezbere cevaplaması yerine, hangi bilginin hangi kaynaktan geldiğini ayırmayı hedefledim.
 
-## Neler geliştirdik?
+## Neler geliştirdim?
 
 - n8n üzerinde uçtan uca AI Agent workflow'u
 - DeepSeek API ile OpenAI uyumlu chat model bağlantısı
@@ -64,7 +70,7 @@ KampRota Asistanı <--- DeepSeek Chat Model
 
 ### Güncel bilgiler - canlı araçlar
 
-Güncel hava durumu için Open-Meteo geocoding ve forecast API'leri kullanıldı. Kullanıcı hangi şehirden bahsediyorsa şehir adı koordinata çevrilir; ardından sıcaklık, yağış ihtimali, rüzgâr ve günlük tahmin alınır.
+Güncel hava durumu için Open-Meteo geocoding ve forecast API'lerini kullandım. Kullanıcı hangi şehirden bahsediyorsa şehir adı koordinata çevrilir; ardından sıcaklık, yağış ihtimali, rüzgâr ve günlük tahmin alınır.
 
 Sabit KampRota fiyatları ve kuralları canlı servisten tahmin edilmez. Bu ayrım, RAG sisteminin güvenilirliği açısından projenin en önemli tasarım kararlarından biridir.
 
@@ -92,7 +98,7 @@ Hazır örnek rapor: [KampRota Gezi Raporu](assets/KampRota-Gezi-Raporu.pdf)
 
 ## E-posta entegrasyonu
 
-Raporu e-posta ile göndermek için n8n'deki **Send an Email** düğümü de denendi. Gmail tarafında güvenlik nedeniyle normal hesap şifresi kabul edilmedi ve `535-5.7.8 BadCredentials` hatası alındı.
+Raporu e-posta ile göndermek için n8n'deki **Send an Email** düğümünü de denedim. Gmail tarafında güvenlik nedeniyle normal hesap şifresi kabul edilmedi ve `535-5.7.8 BadCredentials` hatası alındı.
 
 Bu nedenle e-posta adımı varsayılan akıştan ayrı tutuldu. Gmail ile kullanmak için:
 
@@ -136,13 +142,13 @@ Week-08-n8n-RAG-AI-Agents/
 5. API anahtarını yalnızca n8n credential alanına girin; GitHub'a göndermeyin.
 6. Workflow'u test sorularıyla çalıştırın.
 
-OpenAI embedding kredisi gerektirmeyen keyword RAG sürümü, sınırlı internet ve düşük maliyetli denemeler için özellikle tercih edilmiştir. Klasik vector RAG sürümü de karşılaştırma amacıyla workflow klasöründe tutulmuştur.
+OpenAI embedding kredisi gerektirmeyen keyword RAG sürümünü, sınırlı internet ve düşük maliyetli denemeler için özellikle tercih ettim. Klasik vector RAG sürümünü de karşılaştırma amacıyla workflow klasöründe tuttum.
 
 ## Öğrendiklerimiz
 
-Bu çalışma bize iyi bir AI Agent'ın yalnızca güçlü bir model seçmekten ibaret olmadığını gösterdi. Asıl değer; doğru kaynağı doğru soruyla eşleştirmek, canlı veriyi sabit işletme bilgisinden ayırmak, hataları kullanıcıya anlaşılır biçimde aktarmak ve çıktıyı gerçek hayatta kullanılabilir bir rapora dönüştürmekte ortaya çıktı.
+Bu çalışma bana iyi bir AI Agent'ın yalnızca güçlü bir model seçmekten ibaret olmadığını gösterdi. Asıl değer; doğru kaynağı doğru soruyla eşleştirmek, canlı veriyi sabit işletme bilgisinden ayırmak, hataları kullanıcıya anlaşılır biçimde aktarmak ve çıktıyı gerçek hayatta kullanılabilir bir rapora dönüştürmekte ortaya çıktı.
 
-Özellikle API parametrelerinin türleri, tool bağlantıları, şehir adının koordinata çevrilmesi, hafıza kullanımı ve dosya çıktısının sohbet cevabını bozmaması üzerinde çalıştık. Bu nedenle proje, basit bir chatbot örneğinden çok; RAG, tool calling, memory ve workflow orchestration kavramlarını birlikte gösteren küçük bir uygulama laboratuvarına dönüştü.
+Özellikle API parametrelerinin türleri, tool bağlantıları, şehir adının koordinata çevrilmesi, hafıza kullanımı ve dosya çıktısının sohbet cevabını bozmaması üzerinde çalıştım. Bu nedenle proje, basit bir chatbot örneğinden çok; RAG, tool calling, memory ve workflow orchestration kavramlarını birlikte gösteren küçük bir uygulama laboratuvarına dönüştü.
 
 ## Sınırlamalar ve sonraki adımlar
 
